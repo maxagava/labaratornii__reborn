@@ -1,62 +1,74 @@
 #include <iostream>
-
 using namespace std;
-
-class Complex {
-private:
-	float x1;
-	float x2;
-public:
-	Complex() : x1(0.0f), x2(0.0f)
-	{}
-
-	Complex(float rl, float img) : x1(rl), x2(img)
-	{}
-
-	void getComplex()
-	{
-		cout << "Write real part of complex number:" << endl;
-		cin >> x1;
-		cout << "Write imaginary part of complex number:" << endl;
-		cin >> x2;
-		cout << endl;
-	}
-
-	Complex add(Complex other) const
-	{
-		return Complex(x1 + x1, x2 + x2);
-	}
-
-	void subComplex(Complex other) const
-	{
-	return 	Complex(x1-x)
-	}
-
-	void multiplyComplex(Complex c1, Complex c3, int mpl)
-	{
-		
-	}
-
-	void divComplex(Complex c1, Complex c3, int div)
-	{
-		
-	}
-};
-
-int main()
+class Complex
 {
-	Complex c1, c2, c3;
-	int multi, div;
-	c1.getComplex();
-	c2.getComplex();
-	c3.addComplex(c1, c2, c3);
-	c3.subComplex(c1, c2, c3);
-	cout << "\n Write number for multiplication:" << endl;
-	cin >> multi;
-	c3.multiplyComplex(c1, c3, multi);
-	cout << "\n Write number for dividing:" << endl;
+	private:
+		float rl;
+		float img;
+	public:
+	Complex() : rl(0.0), img(0.0)
+	{}
+
+	Complex(float real, float imag) : rl(real), img(imag)
+	{}
+	void get();
+	void print();
+	Complex sum(Complex c2) const;
+	Complex razn(Complex c2) const;
+	Complex mult(int mpl) const;
+	Complex div(int div) const;
+};
+	void Complex::get()
+{
+	cout << "Write the real part of a complex number : " << endl;
+	cin >> rl;
+	cout << "Write the imaginary part :" << endl;
+	cin >> img;
+	cout << endl;
+}
+	void Complex::print()
+{
+	if (img < 0)
+	{
+		cout << rl << img << "i" << endl;
+	}
+	else
+		cout << rl << "+" << img << "i" << endl;
+}
+	Complex Complex::sum(Complex c2) const
+{
+	return Complex(rl + c2.rl, img + c2.img);
+}
+	Complex Complex::razn(Complex c2) const
+{
+	return Complex(rl - c2.rl, img - c2.img);
+}
+	Complex Complex::mult(int mpl) const
+{
+	return Complex(rl*mpl, img*mpl);
+}
+	Complex Complex::div(int div) const
+{
+	return Complex(rl / div, img / div);
+}
+	int main()
+{
+	Complex a, b, result;
+	int mpl, div;
+	a.get();
+	b.get();
+	result = a.sum(b);
+	cout << "Result (add): "; result.print();
+	result = a.razn(b);
+	cout << "Result (sub): "; result.print();
+	cout << "\n Write number for multiply: " << endl;
+	cin >> mpl;
+	result = a.mult(mpl);
+	cout << "Result (multiply): ";	result.print();
+	cout << "\n Write number fot div: " << endl;
 	cin >> div;
-	c3.divComplex(c1, c3, div);
+	result = a.div(div);
+	cout << "Result (div): ";  result.print();
 	system("pause");
 	return 0;
 }
